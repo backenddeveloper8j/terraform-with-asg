@@ -79,18 +79,18 @@ This is the easiest & safest method (does NOT expose keys in environment variabl
     Linux/macOS → ~/.aws/credentials
 
 ## To install Terraform on Windows, follow these steps:
-    ## Download Terraform:
+    Download Terraform:
         1. Visit the official HashiCorp Terraform downloads page.
         2. Locate the Windows section and download the appropriate binary for your system (e.g., AMD64 for 64-bit systems).
-    ## Extract the Executable:
+    Extract the Executable:
         1. The downloaded file will be a .zip archive. Extract its contents to a directory of your choice. A common practice is to create a new folder like C:\terraform.
-    ## Add Terraform to System PATH:
+    Add Terraform to System PATH:
         1. Search for "environment variables" in the Windows search bar and select "Edit the system environment variables."
         2. In the System Properties window, click "Environment Variables..."
         3. Under "System variables," find and select the "Path" variable, then click "Edit..."
         4. Click "New" and add the full path to the directory where you extracted the terraform.exe file (e.g., C:\terraform).
         5. Click "OK" on all open windows to save the changes.
-    ## Verify Installation:
+    Verify Installation:
         1. Open a new Command Prompt or PowerShell window (existing windows may not recognize the new PATH variable).
         2. Type terraform -v and press Enter.
         3. If the installation was successful, you will see the installed Terraform version as output.
