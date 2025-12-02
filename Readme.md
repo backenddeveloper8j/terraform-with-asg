@@ -9,23 +9,23 @@
     terraform.tfvars
     user-data.sh (optional)
 
-##  1. Initialize Terraform:
+##  1. Initialize Terraform
 
 terraform init
 
-## 2. Review Plan:
+## 2. Review Plan
 
 terraform plan
 
-## 3. Apply Configuration:
+## 3. Apply Configuration
 
 terraform apply -auto-approve
 
-## 4. Destroy Infrastructure (when needed):
+## 4. Destroy Infrastructure (when needed)
 
 terraform destroy
 
-## Key Features of This Configuration:
+## Key Features of This Configuration
 
 1. VPC with Public & Private Subnets - Multi-AZ deployment
 
