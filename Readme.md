@@ -61,6 +61,10 @@ terraform init
 
 ## This configuration provides a production-ready foundation that you can customize based on your specific requirements.
 
+## Installing or updating to the latest version of the AWS CLI
+
+    https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
 ## Using AWS CLI aws configure (Recommended for Windows/Linux/Mac)
 
 This is the easiest & safest method (does NOT expose keys in environment variables).
