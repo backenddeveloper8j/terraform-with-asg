@@ -49,6 +49,7 @@ resource "aws_internet_gateway" "main" {
 
 # Public Subnets
 resource "aws_subnet" "public" {
+
   count                   = length(var.public_subnet_cidrs)
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnet_cidrs[count.index]
@@ -240,21 +241,22 @@ resource "aws_lb_listener" "http" {
 
 # Launch Template with AMI
 resource "aws_launch_template" "app_lt" {
-  name = "${var.environment}-app-lt"
-  //image_id      = var.ami_id
-  image_id      = data.aws_ssm_parameter.amazon_linux_2_ami.value
+  name     = "${var.environment}-app-lt"
+  image_id = data.aws_ssm_parameter.amazon_linux_2_ami.value
+  # image_id      = aws_ami_from_instance.custom_ami.id
   instance_type = var.instance_type
-  #key_name      = var.key_name
-  key_name = aws_key_pair.deployer.key_name
+  key_name      = aws_key_pair.deployer.key_name
 
   iam_instance_profile {
     name = aws_iam_instance_profile.ec2_instance_profile.name
   }
 
-  network_interfaces {
-    associate_public_ip_address = false
-    security_groups             = [aws_security_group.app_sg.id]
-  }
+  vpc_security_group_ids = [aws_security_group.app_sg.id]
+
+  # network_interfaces {
+  #   associate_public_ip_address = false
+  #   security_groups             = [aws_security_group.app_sg.id]
+  # }
 
   user_data = base64encode(templatefile("${path.module}/user-data.sh", {
     app_version = "1.0.0"
@@ -284,8 +286,9 @@ resource "aws_launch_template" "app_lt" {
 
 # Auto Scaling Group
 resource "aws_autoscaling_group" "app_asg" {
-  name                      = "${var.environment}-app-asg"
-  vpc_zone_identifier       = aws_subnet.private[*].id
+  name = "${var.environment}-app-asg"
+  //vpc_zone_identifier       = aws_subnet.private[*].id
+  vpc_zone_identifier       = [for subnet in aws_subnet.public : subnet.id]
   target_group_arns         = [aws_lb_target_group.app_tg.arn]
   health_check_type         = "ELB"
   health_check_grace_period = 300
@@ -403,3 +406,13 @@ data "aws_availability_zones" "available" {
 data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
+
+resource "aws_ami_from_instance" "custom_ami" {
+  name                    = "${var.environment}-custom-ami"
+  source_instance_id      = var.source_instance_id
+  snapshot_without_reboot = false
+
+  tags = {
+    Name = "${var.environment}-custom-ami"
+  }
+}

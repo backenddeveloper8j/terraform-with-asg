@@ -1,3 +1,8 @@
+variable "source_instance_id" {
+  description = "EC2 Instance ID to create AMI from"
+  type        = string
+}
+
 variable "aws_region" {
   description = "AWS region"
   type        = string
