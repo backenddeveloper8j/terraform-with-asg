@@ -71,8 +71,6 @@ This is the easiest & safest method (does NOT expose keys in environment variabl
 
     AWS Access Key ID [None]: YOUR_ACCESS_KEY
     AWS Secret Access Key [None]: YOUR_SECRET_KEY
-    Default region name [None]: ap-south-1
-    Default output format [None]: json
 
 ## AWS CLI will store credentials in:
 
