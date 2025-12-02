@@ -407,12 +407,12 @@ data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
 
-resource "aws_ami_from_instance" "custom_ami" {
-  name                    = "${var.environment}-custom-ami"
-  source_instance_id      = var.source_instance_id
-  snapshot_without_reboot = false
+# resource "aws_ami_from_instance" "custom_ami" {
+#   name                    = "${var.environment}-custom-ami"
+#   source_instance_id      = var.source_instance_id
+#   snapshot_without_reboot = false
 
-  tags = {
-    Name = "${var.environment}-custom-ami"
-  }
-}
+#   tags = {
+#     Name = "${var.environment}-custom-ami"
+#   }
+# }
