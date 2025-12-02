@@ -60,3 +60,22 @@ terraform init
     7. Tagging: Consistent tagging for cost allocation and resource management
 
 ## This configuration provides a production-ready foundation that you can customize based on your specific requirements.
+
+## Using AWS CLI aws configure (Recommended for Windows/Linux/Mac)
+
+This is the easiest & safest method (does NOT expose keys in environment variables).
+
+    aws configure
+
+## You'll be asked
+
+    AWS Access Key ID [None]: YOUR_ACCESS_KEY
+    AWS Secret Access Key [None]: YOUR_SECRET_KEY
+    Default region name [None]: ap-south-1
+    Default output format [None]: json
+
+## AWS CLI will store credentials in:
+
+    Windows → C:\Users\USERNAME\.aws\credentials
+
+    Linux/macOS → ~/.aws/credentials
